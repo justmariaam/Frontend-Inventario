@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos | Sistema de Inventario</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <h1><i class="fas fa-boxes"></i> Inventario de Productos</h1>
+    <p>Consulta, administra y controla tus productos</p>
+</header>
+
+<main class="container">
+    <div class="top-bar">
+        <h2><i class="fas fa-list"></i> Lista de Productos</h2>
+        <a href="registrar.html" class="btn primary">
+            <i class="fas fa-plus-circle"></i> Registrar Producto
+        </a>
+    </div>
+
+    <div class="table-card">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-productos">
+                <!-- Se llenará dinámicamente desde app.js -->
+                <!-- Ejemplo de estructura: -->
+                <!--
+                <tr>
+                    <td>001</td>
+                    <td>Laptop HP Pavilion</td>
+                    <td>Electrónicos</td>
+                    <td>$850.00</td>
+                    <td>15</td>
+                    <td class="actions">
+                        <button class="action-btn edit">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                        <button class="action-btn delete">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                    </td>
+                </tr>
+                -->
+            </tbody>
+        </table>
+    </div>
+    
+    <div style="margin-top: 2rem; text-align: center;">
+        <a href="index.html" class="btn secondary">
+            <i class="fas fa-arrow-left"></i> Volver al Inicio
+        </a>
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2025 <span class="highlight">Sistema de Inventario Pro</span></p>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
