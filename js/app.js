@@ -1,5 +1,4 @@
-const API_URL = "https://TU_BACKEND.onrender.com/api/productos"; 
-// ⚠️ Cuando tengas tu backend en Railway o Render cambia esta URL
+const API_URL = "http://localhost:8080/api/productos"; 
 
 async function cargarProductos() {
     try {
