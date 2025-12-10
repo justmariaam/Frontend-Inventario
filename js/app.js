@@ -2,7 +2,7 @@
  * URL base para consumir el backend.
  * @constant {string}
  */
-const API_URL = "http://localhost:8080/api/productos";
+const API_URL = "https://inventario-backend-production-c7b0.up.railway.app/api/productos";
 
 
 /**
