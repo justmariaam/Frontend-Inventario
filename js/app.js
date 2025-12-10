@@ -1,11 +1,14 @@
 /**
  * URL base para consumir el backend.
+ * @constant {string}
  */
 const API_URL = "http://localhost:8080/api/productos";
 
 
 /**
  * Carga todos los productos desde el backend y los inserta en la tabla HTML.
+ * @function cargarProductos
+ * @returns {void}
  */
 function cargarProductos() {
     fetch(API_URL)
@@ -40,8 +43,9 @@ function cargarProductos() {
 }
 
 /**
- * Redirige a la página de Editar producto enviando el ID por parámetros.
- * @param {number} id .
+ * Redirige a la página de Editar producto enviando el ID por parámetros
+ * @param {number} id 
+ * @returns {void}
  */
 function editar(id) {
     window.location.href = `editar.html?id=${id}`;
@@ -49,7 +53,9 @@ function editar(id) {
 
 /**
  * Elimina un producto del backend
- * @param {number} id 
+ * @function eliminarProducto
+ * @param {number} id
+ * @returns {void}
  */
 function eliminarProducto(id) {
     if (!confirm("¿Estás seguro de eliminar este producto?")) {
@@ -71,6 +77,9 @@ function eliminarProducto(id) {
 /**
  * Ejecuta funciones cuando la página termina de cargar.
  * Si la tabla existe en la página, carga la lista de productos.
+ * @event window#load
+ * @listens window:load
+ * @returns {void}
  */
 window.addEventListener("load", function() {
     if (document.getElementById("tabla-productos")) {
