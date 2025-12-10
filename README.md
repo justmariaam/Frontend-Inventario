@@ -45,12 +45,13 @@ En VSCode:
 En el archivo:
 
 /js/app.js
+registrar.html y editar.html en la parte de script
 -
-Existe una constante llamada "API_URL" donde se coloca la URL del backend:
+Existe una constante llamada "API_URL" donde se coloca la URL del backend que te da railway:
 
 const API_URL = "https://inventario-backend-production-4c4b.up.railway.app";
--
+
 Si estás corriendo backend en local, cámbialo a:
 
-const API_URL = "http://localhost:8080";
--
+const API_URL = "http://localhost:8080/api/productos/";
+
