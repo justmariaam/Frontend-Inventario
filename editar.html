@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Producto | Sistema de Inventario</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <h1>Editar Producto</h1>
+    <p>Modifica la información del producto</p>
+</header>
+
+<main class="container">
+    <div class="top-bar">
+        <h2>Editar Producto</h2>
+        <a href="productos.html" class="btn secondary">Volver a Productos</a>
+    </div>
+
+    <div class="form-card">
+        <form id="form-editar">
+            <div class="form-group">
+                <label for="nombre">Nombre del Producto *</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="categoria">Categoría *</label>
+                <input type="text" id="categoria" name="categoria" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="precio">Precio (USD) *</label>
+                    <input type="number" id="precio" name="precio" required step="0.01" min="0.01">
+                </div>
+
+                <div class="form-group">
+                    <label for="cantidad">Cantidad en Stock *</label>
+                    <input type="number" id="cantidad" name="cantidad" required min="0">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <a href="productos.html" class="btn secondary">Cancelar</a>
+                <button type="submit" class="btn primary" id="btn-actualizar">Actualizar Producto</button>
+            </div>
+        </form>
+    </div>
+
+</main>
+
+<script>
+// Obtener ID de la URL
+const urlParams = new URLSearchParams(window.location.search);
+const productoId = urlParams.get('id');
+const API_URL = "http://localhost:8080/api/productos/" + productoId;
+
+// Cargar datos del producto
+fetch(API_URL)
+    .then(respuesta => respuesta.json())
+    .then(producto => {
+        document.getElementById("nombre").value = producto.nombre;
+        document.getElementById("categoria").value = producto.categoria;
+        document.getElementById("precio").value = producto.precio;
+        document.getElementById("cantidad").value = producto.cantidad;
+    })
+    .catch(error => {
+        console.error("Error al cargar producto:", error);
+        alert("Error al cargar el producto");
+        window.location.href = "productos.html";
+    });
+
+// Enviar formulario
+document.getElementById("form-editar").addEventListener("submit", function(evento) {
+    evento.preventDefault();
+    
+    const boton = document.getElementById("btn-actualizar");
+    const textoOriginal = boton.textContent;
+    boton.textContent = "Actualizando...";
+    boton.disabled = true;
+    
+    const datos = {
+        nombre: document.getElementById("nombre").value,
+        categoria: document.getElementById("categoria").value,
+        precio: parseFloat(document.getElementById("precio").value),
+        cantidad: parseInt(document.getElementById("cantidad").value)
+    };
+    
+    fetch(API_URL, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(datos)
+    })
+    .then(respuesta => {
+        if (respuesta.ok) {
+            alert("Producto actualizado");
+            window.location.href = "productos.html";
+        } else {
+            throw new Error("Error en la actualización");
+        }
+    })
+    .catch(error => {
+        alert("Error al actualizar producto");
+        console.error(error);
+    })
+    .finally(() => {
+        boton.textContent = textoOriginal;
+        boton.disabled = false;
+    });
+});
+</script>
+
+</body>
+</html>

@@ -37,25 +37,7 @@
                 </tr>
             </thead>
             <tbody id="tabla-productos">
-                <!-- Se llenará dinámicamente desde app.js -->
-                <!-- Ejemplo de estructura: -->
-                <!--
-                <tr>
-                    <td>001</td>
-                    <td>Laptop HP Pavilion</td>
-                    <td>Electrónicos</td>
-                    <td>$850.00</td>
-                    <td>15</td>
-                    <td class="actions">
-                        <button class="action-btn edit">
-                            <i class="fas fa-edit"></i> Editar
-                        </button>
-                        <button class="action-btn delete">
-                            <i class="fas fa-trash"></i> Eliminar
-                        </button>
-                    </td>
-                </tr>
-                -->
+                <!-- Cargando... -->
             </tbody>
         </table>
     </div>
@@ -68,7 +50,74 @@
 
 </main>
 
+<!-- SCRIPT DIRECTO EN EL HTML (NO EXTERNO) -->
+<script>
+// URL de la API
+const API = "http://localhost:8080/api/productos";
 
-<script src="js/app.js"></script>
+// Función para cargar productos
+function cargarProductos() {
+    fetch(API)
+        .then(respuesta => respuesta.json())
+        .then(datos => {
+            const tabla = document.getElementById("tabla-productos");
+            let filas = "";
+            
+            datos.forEach(producto => {
+                filas += `
+                <tr>
+                    <td>${producto.id}</td>
+                    <td>${producto.nombre}</td>
+                    <td>${producto.categoria}</td>
+                    <td>$${producto.precio}</td>
+                    <td>${producto.cantidad}</td>
+                    <td class="actions">
+                        <button class="action-btn edit" onclick="editarProducto(${producto.id})">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                        <button class="action-btn delete" onclick="eliminarProducto(${producto.id})">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                    </td>
+                </tr>
+                `;
+            });
+            
+            tabla.innerHTML = filas;
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            document.getElementById("tabla-productos").innerHTML = 
+                '<tr><td colspan="6">Error al cargar productos</td></tr>';
+        });
+}
+
+// Función para editar
+function editarProducto(id) {
+    window.location.href = "editar.html?id=" + id;
+}
+
+// Función para eliminar
+function eliminarProducto(id) {
+    if (!confirm("¿Estás seguro de eliminar este producto?")) {
+        return;
+    }
+    
+    fetch(API + "/" + id, {
+        method: "DELETE"
+    })
+    .then(() => {
+        cargarProductos(); // Recargar la tabla
+    })
+    .catch(error => {
+        alert("Error al eliminar producto");
+        console.error(error);
+    });
+}
+
+// Cargar productos cuando se abra la página
+document.addEventListener("DOMContentLoaded", cargarProductos);
+</script>
+
 </body>
 </html>
