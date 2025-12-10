@@ -46,7 +46,7 @@ En el archivo:
 
 /js/app.js
 -
-Existe una constante llamada "0API_URL" donde se coloca la URL del backend:
+Existe una constante llamada "API_URL" donde se coloca la URL del backend:
 
 const API_URL = "https://inventario-backend-production-4c4b.up.railway.app";
 -
