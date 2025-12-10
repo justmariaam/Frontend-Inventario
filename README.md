@@ -53,5 +53,5 @@ const API_URL = "https://inventario-backend-production-4c4b.up.railway.app";
 
 Si estás corriendo backend en local, cámbialo a:
 
-const API_URL = "http://localhost:8080/api/productos/";
+const API_URL = "http://localhost:8080/api/productos";
 

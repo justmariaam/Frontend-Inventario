@@ -59,6 +59,11 @@ const urlParams = new URLSearchParams(window.location.search);
 const productoId = urlParams.get('id');
 const API_URL = "https://inventario-backend-production-c7b0.up.railway.app/api/productos/" + productoId;
 
+/**
+ * URL base para consumir el desde local.
+ * conts API_URL = "http://localhost:8080/api/productos/" + productoId;
+ */
+
 // Cargar datos del producto
 fetch(API_URL)
     .then(respuesta => respuesta.json())

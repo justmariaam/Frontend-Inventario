@@ -4,6 +4,10 @@
  */
 const API_URL = "https://inventario-backend-production-c7b0.up.railway.app/api/productos";
 
+/**
+ * URL base para consumir el desde local.
+ * conts API_URL = "http://localhost:8080/api/productos";
+ */
 
 /**
  * Carga todos los productos desde el backend y los inserta en la tabla HTML.
