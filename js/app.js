@@ -39,12 +39,21 @@ function editar(id) {
 }
 
 // Función para eliminar
-function eliminar(id) {
-    if (!confirm("¿Seguro que deseas eliminar este producto?")) return;
+function eliminarProducto(id) {
+    if (!confirm("¿Estás seguro de eliminar este producto?")) {
+        return;
+    }
     
-    fetch(`${API_URL}/${id}`, { method: "DELETE" })
-        .then(() => cargarProductos())
-        .catch(error => console.error("Error eliminar:", error));
+    fetch(API + "/" + id, {
+        method: "DELETE"
+    })
+    .then(() => {
+        cargarProductos(); // Recargar la tabla
+    })
+    .catch(error => {
+        alert("Error al eliminar producto");
+        console.error(error);
+    });
 }
 
 // EJECUTAR CUANDO LA PÁGINA ESTÉ LISTA
