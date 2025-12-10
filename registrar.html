@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Producto | Sistema de Inventario</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <h1>Registrar Producto</h1>
+    <p>Agrega un nuevo producto al inventario</p>
+</header>
+
+<main class="container">
+    <div class="form-wrapper">
+        <div class="top-bar">
+            <h2>Nuevo Producto</h2>
+            <a href="productos.html" class="btn secondary">Volver a Productos</a>
+        </div>
+
+        <div class="form-card">
+            <form id="form-registrar">
+                <div class="form-group">
+                    <label for="nombre">Nombre del Producto *</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="categoria">Categoría *</label>
+                    <input type="text" id="categoria" name="categoria" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="precio">Precio (USD) *</label>
+                        <input type="number" id="precio" name="precio" required step="0.01" min="0.01">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad en Stock *</label>
+                        <input type="number" id="cantidad" name="cantidad" required min="0">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a href="productos.html" class="btn secondary">Cancelar</a>
+                    <button type="submit" class="btn primary" id="btn-guardar">Guardar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</main>
+
+<script>
+    const API_URL = "http://localhost:8080/api/productos";
+
+    document.getElementById('form-registrar').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const btnGuardar = document.getElementById('btn-guardar');
+        const originalText = btnGuardar.textContent;
+        btnGuardar.textContent = 'Guardando...';
+        btnGuardar.disabled = true;
+        
+        const producto = {
+            nombre: document.getElementById('nombre').value.trim(),
+            categoria: document.getElementById('categoria').value.trim(),
+            precio: parseFloat(document.getElementById('precio').value),
+            cantidad: parseInt(document.getElementById('cantidad').value)
+        };
+        
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(producto)
+            });
+            
+            if (response.ok) {
+                alert('Producto registrado exitosamente');
+                window.location.href = 'productos.html';
+            } else {
+                throw new Error('Error en el servidor');
+            }
+        } catch (error) {
+            alert('Error al registrar el producto');
+            console.error('Error:', error);
+        } finally {
+            btnGuardar.textContent = originalText;
+            btnGuardar.disabled = false;
+        }
+    });
+</script>
+
+</body>
+</html>

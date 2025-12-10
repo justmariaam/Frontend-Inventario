@@ -535,4 +535,155 @@ td:nth-child(5) { /* Cantidad */
         padding: 0.8rem 0.5rem;
         font-size: 0.85rem;
     }
+
+/* ===== FORMULARIO REGISTRAR - VERSIÓN CORREGIDA ===== */
+
+.container {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 0 20px;
+}
+
+.form-wrapper {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.top-bar {
+    background: #f8f9fa;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.form-card {
+    padding: 2.5rem;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+    background: #fff;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4361ee;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* ESPACIO AUMENTADO ANTES DE LOS BOTONES */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 3.5rem;  /* Aumentado de 2.5rem a 3.5rem */
+    padding-top: 2.5rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.form-actions .btn {
+    padding: 14px 32px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    font-weight: 600;
+    transition: all 0.2s;
+    min-width: 150px;
+    text-align: center;
+}
+
+.form-actions .btn.primary {
+    background: #4361ee;
+    color: white;
+}
+
+.form-actions .btn.primary:hover {
+    background: #3a56d4;
+}
+
+.form-actions .btn.secondary {
+    background: white;
+    border: 1px solid #4361ee;
+    color: #4361ee;
+}
+
+.form-actions .btn.secondary:hover {
+    background: #f8f9fa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        margin: 1rem auto;
+        padding: 0 15px;
+    }
+    
+    .form-card {
+        padding: 1.5rem;
+    }
+    
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .top-bar .btn {
+        width: 100%;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        margin-top: 2.5rem;
+    }
+    
+    .form-actions .btn {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
 }
