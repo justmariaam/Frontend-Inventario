@@ -56,46 +56,55 @@
 </main>
 
 <script>
+    // URL de la API en producción
     const API_URL = "https://inventario-backend-production-c7b0.up.railway.app/api/productos";
     /**
      * URL base para consumir el desde local.
-     * conts API_URL = "http://localhost:8080/api/productos";
+     * const API_URL = "http://localhost:8080/api/productos";
     */
 
+    // Escuchar cuando se envíe el formulario
     document.getElementById('form-registrar').addEventListener('submit', async function(e) {
-        e.preventDefault();
+        e.preventDefault(); // Evita que la página se recargue
         
+        // Cambiar estado del botón mientras procesa
         const btnGuardar = document.getElementById('btn-guardar');
-        const originalText = btnGuardar.textContent;
+        const originalText = btnGuardar.textContent; // Guarda texto original
         btnGuardar.textContent = 'Guardando...';
-        btnGuardar.disabled = true;
+        btnGuardar.disabled = true; // Desactiva para evitar doble clic
         
+        // Crear objeto con los datos del formulario
         const producto = {
-            nombre: document.getElementById('nombre').value.trim(),
+            nombre: document.getElementById('nombre').value.trim(), // trim() elimina espacios en blanco
             categoria: document.getElementById('categoria').value.trim(),
-            precio: parseFloat(document.getElementById('precio').value),
-            cantidad: parseInt(document.getElementById('cantidad').value)
+            precio: parseFloat(document.getElementById('precio').value), // Convierte a decimal
+            cantidad: parseInt(document.getElementById('cantidad').value) // Convierte a entero
         };
         
+        // Enviar producto a la API
         try {
+            // await espera la respuesta del servidor antes de continuar
             const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(producto)
+                method: 'POST', // POST se usa para crear nuevos recursos
+                headers: {'Content-Type': 'application/json'}, // Indica que enviamos JSON
+                body: JSON.stringify(producto) // Convierte objeto a texto JSON
             });
             
+            // Verificar si la respuesta fue exitosa
             if (response.ok) {
                 alert('Producto registrado exitosamente');
-                window.location.href = 'productos.html';
+                window.location.href = 'productos.html'; // Redirige a lista de productos
             } else {
-                throw new Error('Error en el servidor');
+                throw new Error('Error en el servidor'); // Lanza error si algo salió mal
             }
         } catch (error) {
+            // Captura cualquier error de red o del servidor
             alert('Error al registrar el producto');
             console.error('Error:', error);
         } finally {
-            btnGuardar.textContent = originalText;
-            btnGuardar.disabled = false;
+            // Se ejecuta siempre, haya éxito o error
+            btnGuardar.textContent = originalText; // Restaura texto del botón
+            btnGuardar.disabled = false; // Reactiva el botón
         }
     });
 </script>
