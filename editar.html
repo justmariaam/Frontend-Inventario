@@ -34,7 +34,7 @@
 
             <div class="form-row"> 
                 <div class="form-group">
-                    <label for="precio">Precio (USD) *</label>
+                    <label for="precio">Precio *</label>
                     <input type="number" id="precio" name="precio" required step="0.01" min="0.01">
                 </div>
 
@@ -56,7 +56,12 @@
 // 1. Obtener id de la url
 const urlParams = new URLSearchParams(window.location.search); // Crea objeto para leer parámetros URL
 const productoId = urlParams.get('id'); 
-const API_URL = "http://localhost:8080/api/productos/" + productoId; // Construye URL API con ID
+const API_URL = "http://inventario-backend-production-813b.up.railway.app/api/productos/" + productoId; // Construye URL API con ID
+
+/**
+     * URL base para consumir el desde local.
+     * const API_URL = "http://localhost:8080/api/productos";
+    */
 
 // 2. Cargar datos del producto
 fetch(API_URL) // Hace petición GET a la API
