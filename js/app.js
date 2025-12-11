@@ -2,7 +2,7 @@
  * URL base para consumir el backend.
  * @constant {string}
  */
-const API_URL = "https://inventario-backend-production-813b.up.railway.app/api/productos";
+const API_URL = "https://inventario-backend-production-1c13.up.railway.app/api/productos";
 
 /**
  * URL base para consumir el desde local.
@@ -21,7 +21,7 @@ function cargarProductos() {
             const tabla = document.getElementById("tabla-productos");
             tabla.innerHTML = "";
 
-            productos.forEach(p => {
+            productos.forEach(p => {zx
                 tabla.innerHTML += `
                     <tr>
                         <td>${p.id}</td>
