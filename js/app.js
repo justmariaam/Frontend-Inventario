@@ -21,7 +21,7 @@ function cargarProductos() {
             const tabla = document.getElementById("tabla-productos");
             tabla.innerHTML = "";
 
-            productos.forEach(p => {zx
+            productos.forEach(p => {
                 tabla.innerHTML += `
                     <tr>
                         <td>${p.id}</td>

@@ -56,8 +56,7 @@
 // 1. Obtener id de la url
 const urlParams = new URLSearchParams(window.location.search); // Crea objeto para leer parámetros URL
 const productoId = urlParams.get('id'); 
-const API_URL = "https://inventario-backend-production-4123.up.railway.app/api/productos/" + productoId
-
+const API_URL = "https://inventario-backend-production-4123.up.railway.app/api/productos/" + productoId;
 /**
      * URL base para consumir el desde local.
      * const API_URL = "http://localhost:8080/api/productos";
